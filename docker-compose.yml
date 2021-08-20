@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  springtest:
+    container_name: "springtest"
+    build:
+      context: .
+      args:
+        BUNDLE_ARGS: ""
+    entrypoint: java -Dspring.profiles.active=dev -Djava.security.egd=file:/dev/./urandom -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar /deployments/app.jar
+    ports:
+      - 8080:8080
+      - 5005:5005
